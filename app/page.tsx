@@ -24,7 +24,7 @@ export default function ScribdViewer() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 mt-15">
+    <div className="flex flex-col items-center gap-4 p-4 mt-5">
       <div className="inline-block max-w-xl text-center justify-center w-full">
         <h1 className="text-4xl font-bold">Scribd Viewer</h1>
         <h2 className="text-xl text-gray-500 mt-2 mb-2">
