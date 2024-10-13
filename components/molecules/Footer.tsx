@@ -8,8 +8,8 @@ const Footer = () => {
       <Link
         isExternal
         className="flex items-center gap-1 text-current"
-        href="https://handikatriarlan.vercel.app/"
-        title="nextui.org homepage"
+        href="https://handikatriarlan.my.id/contact"
+        title="handikatriarlan contact"
       >
         <span className="text-primary"> handikatriarlan</span>
       </Link>
