@@ -24,15 +24,17 @@ export default function ScribdViewer() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 p-4">
+    <div className="flex flex-col items-center gap-4 p-4 mt-20">
       <div className="inline-block max-w-xl text-center justify-center w-full">
         <h1 className="text-4xl font-bold">Scribd Viewer</h1>
-        <h2 className="text-xl text-gray-500">Embed Scribd documents easily</h2>
+        <h2 className="text-xl text-gray-500 mt-2 mb-2">
+          Embed Scribd documents easily
+        </h2>
       </div>
 
       {/* Jika embed URL sudah ada, tampilkan iframe */}
       {embedUrl !== "" && (
-        <div className="flex flex-col gap-2 w-full max-w-xl mt-4">
+        <div className="flex flex-col gap-3 w-full max-w-xl mt-4">
           <iframe
             height="600px"
             src={embedUrl}
@@ -81,7 +83,7 @@ export default function ScribdViewer() {
       >
         {({ values, handleSubmit, handleChange, resetForm }) => (
           <form
-            className="flex flex-col gap-2 w-full max-w-xl"
+            className="flex flex-col gap-5 w-full max-w-xl"
             onSubmit={handleSubmit}
           >
             <Input
@@ -92,7 +94,7 @@ export default function ScribdViewer() {
               value={values.url}
               onChange={handleChange}
             />
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-5">
               <Button color="primary" type="submit">
                 Generate Embed URL
               </Button>
