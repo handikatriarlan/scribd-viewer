@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Analytics } from "@vercel/analytics/react";
+import { ToastContainer } from "react-toastify";
 
 import { Providers } from "./providers";
 
@@ -8,7 +10,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 import PageLayout from "@/components/organisms/PageLayout";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
@@ -49,6 +51,7 @@ export default function RootLayout({
           </ReactQueryClientProvider>
         </Providers>
         <ToastContainer />
+        <Analytics />
       </body>
     </html>
   );
