@@ -24,7 +24,7 @@ export default function ScribdViewer() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 mt-20">
+    <div className="flex flex-col items-center gap-4 p-4 mt-15">
       <div className="inline-block max-w-xl text-center justify-center w-full">
         <h1 className="text-4xl font-bold">Scribd Viewer</h1>
         <h2 className="text-xl text-gray-500 mt-2 mb-2">
@@ -94,11 +94,16 @@ export default function ScribdViewer() {
               value={values.url}
               onChange={handleChange}
             />
-            <div className="flex flex-col sm:flex-row gap-5">
-              <Button color="primary" type="submit">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                className="flex-1 h-10 min-h-[40px]"
+                color="primary"
+                type="submit"
+              >
                 Generate Embed URL
               </Button>
               <Button
+                className="flex-1 h-10 min-h-[40px]"
                 color="default"
                 type="button"
                 onClick={() => {
