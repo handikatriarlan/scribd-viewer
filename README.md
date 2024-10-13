@@ -1,6 +1,6 @@
 # Scribd Viewer
 
-![UScribd Viewer Website Screenshot](https://ucarecdn.com/af669e93-434f-4b99-9890-00501a3063ae/scribdviewer.png)
+![UScribd Viewer Website Screenshot](https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png)
 
 A simple web application to view Scribd documents by converting standard Scribd URLs into embeddable URLs. This application can be used to view pages on Scribd that are limited by premium access by converting the document URL into an embeddable format.
 
