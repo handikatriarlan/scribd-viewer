@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@heroui/link";
+import { Link } from "@nextui-org/link";
 
 const Footer = () => {
   return (
@@ -8,7 +8,7 @@ const Footer = () => {
       <Link
         isExternal
         className="flex items-center gap-1 text-current"
-        href="https://handikatriarlan.dev"
+        href="https://handikatriarlan.my.id"
         title="Arlan Tri Handika - Portfolio"
       >
         <span className="text-primary"> handikatriarlan</span>

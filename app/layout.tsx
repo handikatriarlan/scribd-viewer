@@ -2,13 +2,16 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { Analytics } from "@vercel/analytics/react";
-import { Toaster } from "sonner";
+import { ToastContainer } from "react-toastify";
 
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 import PageLayout from "@/components/organisms/PageLayout";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: {
@@ -39,13 +42,15 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans,
+          fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <PageLayout>{children}</PageLayout>
+          <ReactQueryClientProvider>
+            <PageLayout>{children}</PageLayout>
+          </ReactQueryClientProvider>
         </Providers>
-        <Toaster />
+        <ToastContainer />
         <Analytics />
       </body>
     </html>
