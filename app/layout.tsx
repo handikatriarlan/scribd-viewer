@@ -31,10 +31,13 @@ export const metadata: Metadata = {
     "Scribd document reader",
   ],
   authors: [
-    { name: "Handika Tri Arlan", url: "https://github.com/handikatriarlan" },
+    {
+      name: "Arlan Tri Handika",
+      url: "https://handikatriarlan.dev",
+    },
   ],
-  creator: "Handika Tri Arlan",
-  publisher: "Handika Tri Arlan",
+  creator: "Arlan Tri Handika",
+  publisher: "Arlan Tri Handika",
   metadataBase: new URL("https://scribd.handikatriarlan.dev"),
   alternates: {
     canonical: "/",
