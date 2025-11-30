@@ -1,18 +1,17 @@
 "use client";
 
-import { Formik } from "formik";
-import React from "react";
-import { Input } from "@nextui-org/input";
-import { Button } from "@nextui-org/button";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { Input } from "@heroui/input";
+import { Button } from "@heroui/button";
+import { toast } from "sonner";
 
 export default function ScribdViewer() {
   const [embedUrl, setEmbedUrl] = useState("");
+  const [url, setUrl] = useState("");
 
-  const convertToEmbedUrl = (url: string) => {
+  const convertToEmbedUrl = (inputUrl: string) => {
     const regex = /scribd\.com\/document\/(\d+)/;
-    const match = url.match(regex);
+    const match = inputUrl.match(regex);
 
     if (match && match[1]) {
       const documentId = match[1];
@@ -21,6 +20,24 @@ export default function ScribdViewer() {
     }
 
     return null;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const embedLink = convertToEmbedUrl(url);
+
+    if (embedLink) {
+      setEmbedUrl(embedLink);
+      toast.success("Link generated successfully!");
+    } else {
+      toast.error("Invalid Scribd URL");
+    }
+    setUrl("");
+  };
+
+  const handleReset = () => {
+    setUrl("");
+    setEmbedUrl("");
   };
 
   return (
@@ -57,56 +74,36 @@ export default function ScribdViewer() {
       )}
 
       {/* Form input URL untuk mengubah menjadi embed URL */}
-      <Formik
-        initialValues={{ url: "" }}
-        onSubmit={(values, { resetForm }) => {
-          const embedLink = convertToEmbedUrl(values.url);
-
-          if (embedLink) {
-            setEmbedUrl(embedLink);
-            toast.success("Link generated successfully!");
-          } else {
-            toast.error("Invalid Scribd URL");
-          }
-          resetForm();
-        }}
+      <form
+        className="flex flex-col gap-5 w-full max-w-xl"
+        onSubmit={handleSubmit}
       >
-        {({ values, handleSubmit, handleChange, resetForm }) => (
-          <form
-            className="flex flex-col gap-5 w-full max-w-xl"
-            onSubmit={handleSubmit}
+        <Input
+          className="w-full"
+          label="Scribd URL"
+          name="url"
+          placeholder="Enter your Scribd document URL"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+        />
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button
+            className="flex-1 h-10 min-h-[40px]"
+            color="primary"
+            type="submit"
           >
-            <Input
-              className="w-full"
-              label="Scribd URL"
-              name="url"
-              placeholder="Enter your Scribd document URL"
-              value={values.url}
-              onChange={handleChange}
-            />
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button
-                className="flex-1 h-10 min-h-[40px]"
-                color="primary"
-                type="submit"
-              >
-                Generate
-              </Button>
-              <Button
-                className="flex-1 h-10 min-h-[40px]"
-                color="default"
-                type="button"
-                onClick={() => {
-                  resetForm();
-                  setEmbedUrl("");
-                }}
-              >
-                Reset
-              </Button>
-            </div>
-          </form>
-        )}
-      </Formik>
+            Generate
+          </Button>
+          <Button
+            className="flex-1 h-10 min-h-[40px]"
+            color="default"
+            type="button"
+            onClick={handleReset}
+          >
+            Reset
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }
