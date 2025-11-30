@@ -28,7 +28,7 @@ export default function ScribdViewer() {
       <div className="inline-block max-w-xl text-center justify-center w-full">
         <h1 className="text-4xl font-bold">Scribd Viewer</h1>
         <h2 className="text-xl text-gray-500 mt-2 mb-2">
-          Embed Scribd documents easily
+          Open Scribd documents easily
         </h2>
       </div>
 
@@ -47,21 +47,11 @@ export default function ScribdViewer() {
               if (embedUrl) {
                 window.open(embedUrl, "_blank");
               } else {
-                toast.error("Embed URL is not available!");
+                toast.error("URL is not available!");
               }
             }}
           >
             Open in a New Tab
-          </Button>
-
-          <Button
-            color="secondary"
-            onClick={() => {
-              navigator.clipboard.writeText(embedUrl);
-              toast.success("Embed URL copied to clipboard!");
-            }}
-          >
-            Copy Embed URL
           </Button>
         </div>
       )}
@@ -74,7 +64,7 @@ export default function ScribdViewer() {
 
           if (embedLink) {
             setEmbedUrl(embedLink);
-            toast.success("Embed link generated successfully!");
+            toast.success("Link generated successfully!");
           } else {
             toast.error("Invalid Scribd URL");
           }
@@ -100,7 +90,7 @@ export default function ScribdViewer() {
                 color="primary"
                 type="submit"
               >
-                Generate Embed URL
+                Generate
               </Button>
               <Button
                 className="flex-1 h-10 min-h-[40px]"
