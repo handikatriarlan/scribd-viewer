@@ -2,14 +2,14 @@
 
 ![UScribd Viewer Website Screenshot](https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png)
 
-A simple web application to view Scribd documents by converting standard Scribd URLs into embeddable URLs. This application can be used to view pages on Scribd that are limited by premium access by converting the document URL into an embeddable format.
+A free online tool to view Scribd locked documents. Easily access and read premium-restricted Scribd pages without limitations. Simply paste your Scribd document URL and view it instantly.
 
 ## Features
 
-- Convert Scribd document URLs into embed URLs
-- View premium-locked Scribd documents through embed links
-- Copy embed URL to clipboard
-- Open the embed link in a new tab
+- Convert Scribd document URLs into viewable links
+- View premium-locked Scribd documents for free
+- Copy generated URL to clipboard
+- Open the document in a new tab
 - Simple and clean UI using Next.js, NextUI, Tailwind CSS, and Framer Motion
 - Hosted on Vercel with Vercel Analytics integrated
 
@@ -53,6 +53,6 @@ Open `http://localhost:3000` with your browser to see the app in action.
 
 ## Usage
 1. Enter the Scribd document URL in the input field.
-2. Click Convert to generate an embeddable URL.
-3. You can copy the embed URL to the clipboard or open the document in a new tab.
+2. Click Generate to create a viewable URL.
+3. You can copy the URL to the clipboard or open the document in a new tab.
 4. View premium-locked Scribd documents without needing a premium account.

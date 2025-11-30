@@ -19,6 +19,61 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "Scribd viewer",
+    "Scribd document viewer",
+    "view Scribd documents",
+    "Scribd locked documents",
+    "free Scribd viewer",
+    "read Scribd documents",
+    "Scribd premium documents",
+    "unlock Scribd",
+    "Scribd document reader",
+  ],
+  authors: [
+    { name: "Handika Tri Arlan", url: "https://github.com/handikatriarlan" },
+  ],
+  creator: "Handika Tri Arlan",
+  publisher: "Handika Tri Arlan",
+  metadataBase: new URL("https://scribd.handikatriarlan.dev"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://scribd.handikatriarlan.dev",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png",
+        width: 1200,
+        height: 630,
+        alt: "Scribd Viewer - View Scribd Locked Documents for Free",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      "https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
   },
