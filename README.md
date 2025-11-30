@@ -10,15 +10,19 @@ A simple web application to view Scribd documents by converting standard Scribd 
 - View premium-locked Scribd documents through embed links
 - Copy embed URL to clipboard
 - Open the embed link in a new tab
-- Simple and clean UI using Next.js, HeroUI, and Tailwind CSS
+- Simple and clean UI using Next.js, NextUI, Tailwind CSS, and Framer Motion
 - Hosted on Vercel with Vercel Analytics integrated
 
 ## Tech Stack
 
 - **Next.js 14** - The React framework for building web applications
-- **HeroUI** - UI components for React applications
+- **NextUI v2** - UI components for React applications
 - **Tailwind CSS** - Utility-first CSS framework for custom designs
+- **Tailwind Variants** - Extension for more responsive styling in Tailwind CSS
 - **TypeScript** - Typed JavaScript for better developer experience
+- **Framer Motion** - Animation library for React
+- **React Query** - Data-fetching library to manage server state in React apps
+- **Formik** - Form management library for React
 
 ## Installation
 
