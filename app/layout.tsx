@@ -1,17 +1,20 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import clsx from "clsx";
+
+import type { Metadata, Viewport } from "next";
+
 import { Analytics } from "@vercel/analytics/react";
-import { ToastContainer } from "react-toastify";
+import { Inter } from "next/font/google";
+
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { siteConfig } from "@/config/site";
 
 import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
-import PageLayout from "@/components/organisms/PageLayout";
-
-import "react-toastify/dist/ReactToastify.css";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -30,28 +33,23 @@ export const metadata: Metadata = {
     "unlock Scribd",
     "Scribd document reader",
   ],
-  authors: [
-    {
-      name: "Arlan Tri Handika",
-      url: "https://handikatriarlan.dev",
-    },
-  ],
-  creator: "Arlan Tri Handika",
-  publisher: "Arlan Tri Handika",
-  metadataBase: new URL("https://scribd.handikatriarlan.dev"),
+  authors: [siteConfig.author],
+  creator: siteConfig.author.name,
+  publisher: siteConfig.author.name,
+  metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://scribd.handikatriarlan.dev",
+    url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
       {
-        url: "https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
         alt: "Scribd Viewer - View Scribd Locked Documents for Free",
@@ -62,9 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [
-      "https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png",
-    ],
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
@@ -84,8 +80,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfa" },
+    { media: "(prefers-color-scheme: dark)", color: "#1b1b1f" },
   ],
 };
 
@@ -96,19 +92,16 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
       <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
+        className={`${inter.variable} flex min-h-dvh flex-col font-sans antialiased`}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <ReactQueryClientProvider>
-            <PageLayout>{children}</PageLayout>
-          </ReactQueryClientProvider>
+        <Providers>
+          <Header />
+          <main className="mx-auto w-full max-w-3xl flex-1 px-4">
+            {children}
+          </main>
+          <Footer />
         </Providers>
-        <ToastContainer />
         <Analytics />
       </body>
     </html>

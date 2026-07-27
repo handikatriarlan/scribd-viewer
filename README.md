@@ -1,58 +1,52 @@
 # Scribd Viewer
 
-![UScribd Viewer Website Screenshot](https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png)
+![Scribd Viewer Website Screenshot](https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png)
 
-A free online tool to view Scribd locked documents. Easily access and read premium-restricted Scribd pages without limitations. Simply paste your Scribd document URL and view it instantly.
+A free online tool to view Scribd locked documents. Paste a Scribd link (or a bare document ID) and read the full document instantly — no account needed.
 
 ## Features
 
-- Convert Scribd document URLs into viewable links
-- View premium-locked Scribd documents for free
-- Copy generated URL to clipboard
-- Open the document in a new tab
-- Simple and clean UI using Next.js, NextUI, Tailwind CSS, and Framer Motion
-- Hosted on Vercel with Vercel Analytics integrated
+- Supports every Scribd link format: `/document`, `/doc`, `/presentation`, `/book`, `/embeds`, and bare document IDs
+- Shareable viewer links — `/?d=<id>` opens the document directly
+- Recent documents history (stored locally in your browser)
+- Fullscreen reading mode
+- Copy the embed link or open the original document on Scribd
+- Light/dark theme with system preference support
+- Fully responsive, mobile-friendly UI
 
 ## Tech Stack
 
-- **Next.js 14** - The React framework for building web applications
-- **NextUI v2** - UI components for React applications
-- **Tailwind CSS** - Utility-first CSS framework for custom designs
-- **Tailwind Variants** - Extension for more responsive styling in Tailwind CSS
-- **TypeScript** - Typed JavaScript for better developer experience
-- **Framer Motion** - Animation library for React
-- **React Query** - Data-fetching library to manage server state in React apps
-- **Formik** - Form management library for React
+- **Next.js 16** — React framework (App Router, Turbopack)
+- **React 19**
+- **Tailwind CSS 4** — CSS-first configuration, no component library
+- **TypeScript**
+- **next-themes** — theme switching
+- Hosted on Vercel with Vercel Analytics
 
-## Installation
+## Getting Started
 
-To get started with the Scribd Viewer, follow these steps:
-
-### 1. Clone the repository:
 ```bash
 git clone https://github.com/handikatriarlan/scribd-viewer.git
-```
-
-### 2. Navigate to the project directory:
-```bash
 cd scribd-viewer
-```
-
-### 3. Install dependencies:
-```bash
 npm install
-```
-
-### 4. Run the development server
-```bash
 npm run dev
 ```
 
-### 5. Open in your local server
-Open `http://localhost:3000` with your browser to see the app in action.
+Open `http://localhost:3000` in your browser.
+
+## Scripts
+
+| Command             | Description              |
+| ------------------- | ------------------------ |
+| `npm run dev`       | Start development server |
+| `npm run build`     | Production build         |
+| `npm run start`     | Serve production build   |
+| `npm run lint`      | Run ESLint               |
+| `npm run typecheck` | Run TypeScript checks    |
 
 ## Usage
-1. Enter the Scribd document URL in the input field.
-2. Click Generate to create a viewable URL.
-3. You can copy the URL to the clipboard or open the document in a new tab.
-4. View premium-locked Scribd documents without needing a premium account.
+
+1. Paste a Scribd document URL (or its numeric ID) into the input field.
+2. Press **View document** — the document loads right below.
+3. Use the toolbar to go fullscreen, copy the embed link, or open the original on Scribd.
+4. Reopen anything you've viewed before from the **Recent documents** list.
