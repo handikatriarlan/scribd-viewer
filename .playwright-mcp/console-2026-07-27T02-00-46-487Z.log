@@ -1,0 +1,4 @@
+[     165ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/01o-_next_dist_0c85sgf._.js:2489
+[     197ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/01o-_next_dist_0c85sgf._.js:2489
+[     298ms] [LOG] %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/01o-_next_dist_0c85sgf._.js:2489
+[     299ms] [LOG] %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {o: http://localhost:3000/, sv: 0.1.3, sdkn: @vercel/analytics/react, sdkv: 1.6.1, ts: 1785117646785} /_vercel/insights/view @ http://localhost:3000/_next/static/chunks/01o-_next_dist_0c85sgf._.js:2489

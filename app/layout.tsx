@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -16,12 +16,28 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-instrument-serif",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
+    default: `${siteConfig.name} — Read Scribd Documents Online Free`,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  applicationName: siteConfig.name,
+  category: "utilities",
+  formatDetection: {
+    telephone: false,
+  },
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "default",
+  },
   keywords: [
     "Scribd viewer",
     "Scribd document viewer",
@@ -44,7 +60,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: `${siteConfig.name} — Read Scribd Documents Online Free`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -58,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
+    title: `${siteConfig.name} — Read Scribd Documents Online Free`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -93,7 +109,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body
-        className={`${inter.variable} flex min-h-dvh flex-col font-sans antialiased`}
+        className={`${inter.variable} ${instrumentSerif.variable} flex min-h-dvh flex-col font-sans antialiased`}
       >
         <Providers>
           <Header />

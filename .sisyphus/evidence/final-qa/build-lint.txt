@@ -1,0 +1,10 @@
+=== Build + Lint + Typecheck ===
+
+npm run build: EXIT_CODE=0
+  Next.js Build: Errors: 0 | Warnings: 0
+
+npm run lint: EXIT_CODE=0
+
+npm run typecheck: EXIT_CODE=0
+
+All checks PASS.

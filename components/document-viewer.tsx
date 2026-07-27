@@ -1,5 +1,6 @@
 "use client";
 
+import { preconnect } from "react-dom";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import type { ScribdDocument } from "@/lib/scribd";
@@ -30,6 +31,8 @@ export interface DocumentViewerProps {
 }
 
 export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
+  preconnect("https://www.scribd.com");
+
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);

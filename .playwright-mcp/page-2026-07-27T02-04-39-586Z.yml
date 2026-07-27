@@ -1,0 +1,74 @@
+- generic [ref=f19e1]:
+  - banner [ref=f19e2]:
+    - generic [ref=f19e3]:
+      - link "Scribd Viewer" [active] [ref=f19e4] [cursor=pointer]:
+        - /url: /
+      - button "Switch to light theme" [ref=f19e121]
+  - main [ref=f19e8]:
+    - generic [ref=f19e9]:
+      - heading "Read Scribd documents freely" [level=1] [ref=f19e10]
+      - paragraph [ref=f19e11]: Paste a Scribd link and read the full document — no account, no paywall prompts.
+    - generic [ref=f19e12]:
+      - generic [ref=f19e13]:
+        - generic [ref=f19e14]: Scribd document link or ID
+        - textbox "Scribd document link or ID" [ref=f19e15]:
+          - /placeholder: Paste a Scribd link or document ID
+        - button "View document" [ref=f19e16]
+      - paragraph [ref=f19e17]: Works with scribd.com/document, /doc, /presentation, /book, and /embeds links.
+    - generic [ref=f19e37]:
+      - generic [ref=f19e38]:
+        - heading "Recent documents" [level=2] [ref=f19e39]
+        - button "Clear all" [ref=f19e40]
+      - list [ref=f19e41]:
+        - listitem [ref=f19e42]:
+          - button "11111 just now" [ref=f19e43]:
+            - generic [ref=f19e44]: "11111"
+            - generic [ref=f19e49]: just now
+        - listitem [ref=f19e53]:
+          - button "12345 4 minutes ago" [ref=f19e125]:
+            - generic [ref=f19e55]: "12345"
+            - generic [ref=f19e60]: 4 minutes ago
+        - listitem [ref=f19e64]:
+          - button "67890 10 minutes ago" [ref=f19e126]:
+            - generic [ref=f19e66]: "67890"
+            - generic [ref=f19e71]: 10 minutes ago
+    - region [ref=f19e75]:
+      - heading "How it works" [level=2] [ref=f19e76]
+      - list [ref=f19e77]:
+        - listitem [ref=f19e78]:
+          - generic [ref=f19e79]: "1"
+          - heading "Copy a Scribd link" [level=3] [ref=f19e80]
+          - paragraph [ref=f19e81]: Grab the URL of any document, presentation, or book on Scribd.
+        - listitem [ref=f19e82]:
+          - generic [ref=f19e83]: "2"
+          - heading "Paste it here" [level=3] [ref=f19e84]
+          - paragraph [ref=f19e85]: Drop the link (or just the document ID) into the input field.
+        - listitem [ref=f19e86]:
+          - generic [ref=f19e87]: "3"
+          - heading "Read instantly" [level=3] [ref=f19e88]
+          - paragraph [ref=f19e89]: The full document loads on the page — free, fast, fullscreen.
+    - region [ref=f19e90]:
+      - heading "Frequently asked questions" [level=2] [ref=f19e91]
+      - generic [ref=f19e92]:
+        - group [ref=f19e93]:
+          - generic [ref=f19e95] [cursor=pointer]:
+            - text: How do I view a Scribd document for free?
+            - generic [ref=f19e96]: +
+        - group [ref=f19e97]:
+          - generic [ref=f19e99] [cursor=pointer]:
+            - text: Which Scribd links are supported?
+            - generic [ref=f19e100]: +
+        - group [ref=f19e101]:
+          - generic [ref=f19e103] [cursor=pointer]:
+            - text: Do I need a Scribd account?
+            - generic [ref=f19e104]: +
+        - group [ref=f19e105]:
+          - generic [ref=f19e107] [cursor=pointer]:
+            - text: Is my reading history private?
+            - generic [ref=f19e108]: +
+  - contentinfo [ref=f19e109]:
+    - text: Created with ♡ by
+    - link "handikatriarlan" [ref=f19e110] [cursor=pointer]:
+      - /url: https://handikatriarlan.dev
+  - button "Open Next.js Dev Tools" [ref=f19e116] [cursor=pointer]
+  - alert [ref=f19e120]

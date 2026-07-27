@@ -1,0 +1,32 @@
+{
+  "active_plan": "/home/handikatriarlan/FedoraPad/Dev/next/scribd-viewer/.sisyphus/plans/scribd-ui-refactor.md",
+  "started_at": "2026-07-27T01:19:19.980Z",
+  "session_ids": [
+    "ses_05ee44c05ffei8Vz60WCXagN3I"
+  ],
+  "session_origins": {
+    "ses_05ee44c05ffei8Vz60WCXagN3I": "direct"
+  },
+  "plan_name": "scribd-ui-refactor",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "**Design System — `styles/globals.css`**",
+      "session_id": "ses_05ec62eebffedqHLbM197BMXOT",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-07-27T01:40:20.453Z"
+    },
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "**Plan Compliance Audit** — `oracle`",
+      "session_id": "ses_05eb94db0ffexB4NPEOHBXEgbw",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-07-27T01:57:46.662Z"
+    }
+  }
+}

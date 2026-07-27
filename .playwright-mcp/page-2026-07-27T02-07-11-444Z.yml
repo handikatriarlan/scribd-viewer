@@ -1,0 +1,54 @@
+- generic [active] [ref=f28e1]:
+  - banner [ref=f28e2]:
+    - link "Scribd Viewer" [ref=f28e4] [cursor=pointer]:
+      - /url: /
+  - main [ref=f28e6]:
+    - generic [ref=f28e7]:
+      - heading "Read Scribd documents freely" [level=1] [ref=f28e8]
+      - paragraph [ref=f28e9]: Paste a Scribd link and read the full document — no account, no paywall prompts.
+    - generic [ref=f28e10]:
+      - generic [ref=f28e11]:
+        - generic [ref=f28e12]: Scribd document link or ID
+        - textbox "Scribd document link or ID" [ref=f28e13]:
+          - /placeholder: Paste a Scribd link or document ID
+        - button "View document" [ref=f28e14]
+      - paragraph [ref=f28e15]: Works with scribd.com/document, /doc, /presentation, /book, and /embeds links.
+    - region [ref=f28e16]:
+      - heading "How it works" [level=2] [ref=f28e17]
+      - list [ref=f28e18]:
+        - listitem [ref=f28e19]:
+          - generic [ref=f28e20]: "1"
+          - heading "Copy a Scribd link" [level=3] [ref=f28e21]
+          - paragraph [ref=f28e22]: Grab the URL of any document, presentation, or book on Scribd.
+        - listitem [ref=f28e23]:
+          - generic [ref=f28e24]: "2"
+          - heading "Paste it here" [level=3] [ref=f28e25]
+          - paragraph [ref=f28e26]: Drop the link (or just the document ID) into the input field.
+        - listitem [ref=f28e27]:
+          - generic [ref=f28e28]: "3"
+          - heading "Read instantly" [level=3] [ref=f28e29]
+          - paragraph [ref=f28e30]: The full document loads on the page — free, fast, fullscreen.
+    - region [ref=f28e31]:
+      - heading "Frequently asked questions" [level=2] [ref=f28e32]
+      - generic [ref=f28e33]:
+        - group [ref=f28e34]:
+          - generic [ref=f28e36] [cursor=pointer]:
+            - text: How do I view a Scribd document for free?
+            - generic [ref=f28e37]: +
+        - group [ref=f28e38]:
+          - generic [ref=f28e40] [cursor=pointer]:
+            - text: Which Scribd links are supported?
+            - generic [ref=f28e41]: +
+        - group [ref=f28e42]:
+          - generic [ref=f28e44] [cursor=pointer]:
+            - text: Do I need a Scribd account?
+            - generic [ref=f28e45]: +
+        - group [ref=f28e46]:
+          - generic [ref=f28e48] [cursor=pointer]:
+            - text: Is my reading history private?
+            - generic [ref=f28e49]: +
+  - contentinfo [ref=f28e50]:
+    - text: Created with ♡ by
+    - link "handikatriarlan" [ref=f28e51] [cursor=pointer]:
+      - /url: https://handikatriarlan.dev
+  - button "Open Next.js Dev Tools" [ref=f28e57] [cursor=pointer]

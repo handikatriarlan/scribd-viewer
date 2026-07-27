@@ -59,15 +59,6 @@ export function ViewerApp() {
 
   return (
     <>
-      <section className="pt-10 text-center sm:pt-16">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Read Scribd documents freely
-        </h1>
-        <p className="mx-auto mt-3 max-w-md text-base text-muted sm:text-lg">
-          Paste a Scribd link and read the full document — no account, no
-          paywall prompts.
-        </p>
-      </section>
       <UrlForm
         error={error}
         value={inputValue}

@@ -1,0 +1,85 @@
+- generic [ref=f14e1]:
+  - banner [ref=f14e2]:
+    - generic [ref=f14e3]:
+      - link "Scribd Viewer" [ref=f14e4] [cursor=pointer]:
+        - /url: /
+      - button "Switch to dark theme" [ref=f14e61]
+  - main [ref=f14e6]:
+    - generic [ref=f14e7]:
+      - heading "Read Scribd documents freely" [level=1] [ref=f14e8]
+      - paragraph [ref=f14e9]: Paste a Scribd link and read the full document — no account, no paywall prompts.
+    - generic [ref=f14e10]:
+      - generic [ref=f14e11]:
+        - generic [ref=f14e12]: Scribd document link or ID
+        - textbox "Scribd document link or ID" [ref=f14e13]:
+          - /placeholder: Paste a Scribd link or document ID
+        - button "View document" [ref=f14e14]
+      - paragraph [ref=f14e15]: Works with scribd.com/document, /doc, /presentation, /book, and /embeds links.
+    - generic [ref=f14e103]:
+      - generic [ref=f14e104]:
+        - button "Fullscreen" [ref=f14e105]
+        - button "Copy link" [ref=f14e108]
+        - link "Open on Scribd" [ref=f14e112] [cursor=pointer]:
+          - /url: https://www.scribd.com/document/12345
+        - button "Close viewer" [ref=f14e117]: Close
+      - generic [ref=f14e120]:
+        - status "Loading document" [ref=f14e122]
+        - iframe [ref=f14e123]:
+          
+    - generic [ref=f14e64]:
+      - generic [ref=f14e65]:
+        - heading "Recent documents" [level=2] [ref=f14e66]
+        - button "Clear all" [ref=f14e67]
+      - list [ref=f14e68]:
+        - listitem [ref=f14e69]:
+          - button "12345 just now" [active] [ref=f14e124]:
+            - generic [ref=f14e71]: "12345"
+            - generic [ref=f14e76]: just now
+        - listitem [ref=f14e80]:
+          - button "67890 6 minutes ago" [ref=f14e125]:
+            - generic [ref=f14e82]: "67890"
+            - generic [ref=f14e87]: 6 minutes ago
+        - listitem [ref=f14e91]:
+          - button "11111 1 minute ago" [ref=f14e126]:
+            - generic [ref=f14e93]: "11111"
+            - generic [ref=f14e98]: 1 minute ago
+    - region [ref=f14e16]:
+      - heading "How it works" [level=2] [ref=f14e17]
+      - list [ref=f14e18]:
+        - listitem [ref=f14e19]:
+          - generic [ref=f14e20]: "1"
+          - heading "Copy a Scribd link" [level=3] [ref=f14e21]
+          - paragraph [ref=f14e22]: Grab the URL of any document, presentation, or book on Scribd.
+        - listitem [ref=f14e23]:
+          - generic [ref=f14e24]: "2"
+          - heading "Paste it here" [level=3] [ref=f14e25]
+          - paragraph [ref=f14e26]: Drop the link (or just the document ID) into the input field.
+        - listitem [ref=f14e27]:
+          - generic [ref=f14e28]: "3"
+          - heading "Read instantly" [level=3] [ref=f14e29]
+          - paragraph [ref=f14e30]: The full document loads on the page — free, fast, fullscreen.
+    - region [ref=f14e31]:
+      - heading "Frequently asked questions" [level=2] [ref=f14e32]
+      - generic [ref=f14e33]:
+        - group [ref=f14e34]:
+          - generic [ref=f14e36] [cursor=pointer]:
+            - text: How do I view a Scribd document for free?
+            - generic [ref=f14e37]: +
+        - group [ref=f14e38]:
+          - generic [ref=f14e40] [cursor=pointer]:
+            - text: Which Scribd links are supported?
+            - generic [ref=f14e41]: +
+        - group [ref=f14e42]:
+          - generic [ref=f14e44] [cursor=pointer]:
+            - text: Do I need a Scribd account?
+            - generic [ref=f14e45]: +
+        - group [ref=f14e46]:
+          - generic [ref=f14e48] [cursor=pointer]:
+            - text: Is my reading history private?
+            - generic [ref=f14e49]: +
+  - contentinfo [ref=f14e50]:
+    - text: Created with ♡ by
+    - link "handikatriarlan" [ref=f14e51] [cursor=pointer]:
+      - /url: https://handikatriarlan.dev
+  - button "Open Next.js Dev Tools" [ref=f14e57] [cursor=pointer]
+  - alert [ref=f14e102]
