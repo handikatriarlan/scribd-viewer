@@ -106,11 +106,11 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         type="application/ld+json"
       />
-      <section className="pt-10 text-center sm:pt-16">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
+      <section className="pt-6 text-center sm:pt-14">
+        <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-4xl text-foreground text-balance">
           Read Scribd documents freely
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-base text-muted-foreground sm:text-lg">
+        <p className="mx-auto mt-2.5 max-w-md text-sm text-muted-foreground sm:text-base leading-relaxed">
           Paste a Scribd link and read the full document — no account, no
           paywall prompts.
         </p>
@@ -118,23 +118,23 @@ export default function HomePage() {
       <Suspense fallback={<ViewerFallback />}>
         <ViewerApp />
       </Suspense>
-      <section aria-labelledby="how-it-works" className="mx-auto mt-16 w-full max-w-xl">
+      <section aria-labelledby="how-it-works" className="mx-auto mt-12 sm:mt-16 w-full max-w-2xl">
         <h2
-          className="text-center text-lg font-semibold tracking-tight text-foreground"
+          className="text-center text-base sm:text-lg font-semibold tracking-tight text-foreground"
           id="how-it-works"
         >
           How it works
         </h2>
-        <ol className="mt-6 grid gap-4 sm:grid-cols-3">
+        <ol className="mt-4 sm:mt-6 grid gap-3 sm:grid-cols-3">
           {steps.map((step, index) => (
             <li
               key={step.title}
-              className="rounded-2xl border border-border bg-card p-4 text-center"
+              className="rounded-2xl border border-border bg-card p-3.5 text-center shadow-2xs"
             >
-              <span className="mx-auto flex size-7 items-center justify-center rounded-full bg-accent text-sm font-semibold text-accent-foreground">
+              <span className="mx-auto flex size-7 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
                 {index + 1}
               </span>
-              <h3 className="mt-3 text-sm font-medium text-foreground">{step.title}</h3>
+              <h3 className="mt-2.5 text-sm font-semibold text-foreground">{step.title}</h3>
               <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                 {step.description}
               </p>
@@ -142,15 +142,15 @@ export default function HomePage() {
           ))}
         </ol>
       </section>
-      <section aria-labelledby="faq" className="mx-auto mt-16 w-full max-w-xl">
-        <h2 className="text-center text-lg font-semibold tracking-tight text-foreground" id="faq">
+      <section aria-labelledby="faq" className="mx-auto mt-12 sm:mt-16 w-full max-w-2xl">
+        <h2 className="text-center text-base sm:text-lg font-semibold tracking-tight text-foreground" id="faq">
           Frequently asked questions
         </h2>
-        <div className="mt-6 flex flex-col gap-2">
+        <div className="mt-4 sm:mt-6 flex flex-col gap-2.5">
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-2xl border border-border bg-card px-4 py-3 transition-colors open:border-accent"
+              className="group rounded-2xl border border-border bg-card px-3.5 py-3 transition-colors open:border-accent shadow-2xs"
             >
               <summary className="cursor-pointer list-none text-sm font-medium text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center justify-between gap-3">
@@ -163,7 +163,7 @@ export default function HomePage() {
                   </span>
                 </span>
               </summary>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 {faq.answer}
               </p>
             </details>

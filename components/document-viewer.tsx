@@ -15,7 +15,7 @@ import {
 } from "@/components/icons";
 
 const toolbarButton =
-  "flex h-9 items-center gap-1.5 rounded-lg border border-border px-3 text-sm text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+  "flex h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-border px-2.5 sm:px-3 text-xs sm:text-sm text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
 const noopSubscribe = () => () => {};
 

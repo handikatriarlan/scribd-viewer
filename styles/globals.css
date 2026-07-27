@@ -126,6 +126,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   h1,
   h2,
   h3,

@@ -113,7 +113,7 @@ export default function RootLayout({
       >
         <Providers>
           <Header />
-          <main className="mx-auto w-full max-w-3xl flex-1 px-4">
+          <main className="mx-auto w-full max-w-3xl flex-1 px-3 sm:px-4">
             {children}
           </main>
           <Footer />
