@@ -1,6 +1,6 @@
 # Scribd Viewer
 
-![Scribd Viewer Website Screenshot](https://ucarecdn.com/bdf85075-59d7-42f9-986b-7960303860c6/scribdviewer.png)
+![Scribd Viewer Website Screenshot](https://ucarecdn.com/97714dad-3815-4264-b299-4dc5ca6d7aef/scribdhandikatriarlandev.png)
 
 A free online tool to view Scribd locked documents. Paste a Scribd link (or a bare document ID) and read the full document instantly — no account needed.
 
