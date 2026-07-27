@@ -18,7 +18,7 @@ export default function Error({
       <h1 className="text-3xl font-bold tracking-tight">
         Something went wrong
       </h1>
-      <p className="max-w-md text-muted">
+      <p className="max-w-md text-muted-foreground">
         An unexpected error occurred. You can try again, and if it keeps
         happening, reload the page.
       </p>

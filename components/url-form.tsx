@@ -24,7 +24,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
           aria-describedby={error ? "scribd-url-error" : undefined}
           aria-invalid={error ? true : undefined}
           autoComplete="off"
-          className={`h-11 w-full flex-1 rounded-lg border bg-background px-3 text-sm text-foreground placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+          className={`h-11 w-full flex-1 rounded-lg border bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
             error ? "border-red-500 dark:border-red-400" : "border-border"
           }`}
           id="scribd-url"
@@ -51,7 +51,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
           {error}
         </p>
       ) : (
-        <p className="mt-2 text-xs text-muted">
+        <p className="mt-2 text-xs text-muted-foreground">
           Works with scribd.com/document, /doc, /presentation, /book, and /embeds
           links.
         </p>

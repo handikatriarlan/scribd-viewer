@@ -2,7 +2,7 @@ import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="py-10 text-center text-sm text-muted">
+    <footer className="py-10 text-center text-sm text-muted-foreground">
       Created with ♡ by{" "}
       <a
         className="font-medium text-foreground underline-offset-4 transition-colors hover:text-accent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"

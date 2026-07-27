@@ -43,9 +43,9 @@ export function HistoryList({
   return (
     <section className="mx-auto mt-10 w-full max-w-xl">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-medium text-muted">Recent documents</h2>
+        <h2 className="text-sm font-medium text-muted-foreground">Recent documents</h2>
         <button
-          className="rounded-lg px-2 py-1 text-xs text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="rounded-lg px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           type="button"
           onClick={onClear}
         >
@@ -63,10 +63,10 @@ export function HistoryList({
               onClick={() => onSelect(entry.id)}
             >
               <span className="flex items-center gap-2 text-sm">
-                <FileIcon className="shrink-0 text-muted" />
+                <FileIcon className="shrink-0 text-muted-foreground" />
                 <span className="tabular-nums text-foreground">{entry.id}</span>
               </span>
-              <span className="flex shrink-0 items-center gap-1.5 text-xs text-muted">
+              <span className="flex shrink-0 items-center gap-1.5 text-xs text-muted-foreground">
                 <ClockIcon width="12" height="12" />
                 {formatRelativeTime(entry.viewedAt)}
               </span>

@@ -107,10 +107,10 @@ export default function HomePage() {
         type="application/ld+json"
       />
       <section className="pt-10 text-center sm:pt-16">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
           Read Scribd documents freely
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-base text-muted sm:text-lg">
+        <p className="mx-auto mt-3 max-w-md text-base text-muted-foreground sm:text-lg">
           Paste a Scribd link and read the full document — no account, no
           paywall prompts.
         </p>
@@ -120,7 +120,7 @@ export default function HomePage() {
       </Suspense>
       <section aria-labelledby="how-it-works" className="mx-auto mt-16 w-full max-w-xl">
         <h2
-          className="text-center text-lg font-semibold tracking-tight"
+          className="text-center text-lg font-semibold tracking-tight text-foreground"
           id="how-it-works"
         >
           How it works
@@ -135,7 +135,7 @@ export default function HomePage() {
                 {index + 1}
               </span>
               <h3 className="mt-3 text-sm font-medium text-foreground">{step.title}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-muted">
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                 {step.description}
               </p>
             </li>
@@ -143,7 +143,7 @@ export default function HomePage() {
         </ol>
       </section>
       <section aria-labelledby="faq" className="mx-auto mt-16 w-full max-w-xl">
-        <h2 className="text-center text-lg font-semibold tracking-tight" id="faq">
+        <h2 className="text-center text-lg font-semibold tracking-tight text-foreground" id="faq">
           Frequently asked questions
         </h2>
         <div className="mt-6 flex flex-col gap-2">
@@ -152,18 +152,18 @@ export default function HomePage() {
               key={faq.question}
               className="group rounded-2xl border border-border bg-card px-4 py-3 transition-colors open:border-accent"
             >
-              <summary className="cursor-pointer list-none text-sm font-medium marker:hidden [&::-webkit-details-marker]:hidden">
+              <summary className="cursor-pointer list-none text-sm font-medium text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center justify-between gap-3">
                   {faq.question}
                   <span
                     aria-hidden="true"
-                    className="text-muted transition-transform group-open:rotate-45"
+                    className="text-muted-foreground transition-transform group-open:rotate-45"
                   >
                     +
                   </span>
                 </span>
               </summary>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {faq.answer}
               </p>
             </details>
