@@ -30,7 +30,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
             aria-describedby={error ? "scribd-url-error" : undefined}
             aria-invalid={error ? true : undefined}
             autoComplete="off"
-            className={`h-12 w-full rounded-xl border bg-background pl-10 pr-9 text-base sm:text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-all ${
+            className={`h-12 w-full rounded-xl border bg-background pl-10 pr-9 text-base sm:text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground transition-all ${
               error ? "border-red-500 dark:border-red-400" : "border-border"
             }`}
             id="scribd-url"
@@ -53,7 +53,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
           )}
         </div>
         <button
-          className="h-12 w-full sm:w-auto shrink-0 cursor-pointer rounded-xl bg-accent px-6 text-base sm:text-sm font-medium text-accent-foreground flex items-center justify-center gap-2 transition hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-card shadow-sm"
+          className="h-12 w-full sm:w-auto shrink-0 cursor-pointer rounded-xl bg-foreground px-6 text-base sm:text-sm font-medium text-background flex items-center justify-center gap-2 transition hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-card shadow-sm"
           type="submit"
         >
           <span>View document</span>

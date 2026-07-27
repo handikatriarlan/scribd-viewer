@@ -26,7 +26,7 @@ export function ThemeSwitch() {
   return (
     <button
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="relative flex size-9 cursor-pointer items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="relative flex size-9 cursor-pointer items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >

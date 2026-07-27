@@ -56,8 +56,8 @@ export function HistoryList({
         {entries.map((entry) => (
           <li key={entry.id}>
             <button
-              className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border bg-card px-3.5 py-2.5 text-left transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                entry.id === activeId ? "border-accent ring-1 ring-accent/30" : "border-border"
+              className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border bg-card px-3.5 py-2.5 text-left transition-colors hover:border-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground ${
+                entry.id === activeId ? "border-foreground ring-1 ring-foreground/20" : "border-border"
               }`}
               type="button"
               onClick={() => onSelect(entry.id)}

@@ -131,7 +131,7 @@ export default function HomePage() {
               key={step.title}
               className="rounded-2xl border border-border bg-card p-3.5 text-center shadow-2xs"
             >
-              <span className="mx-auto flex size-7 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
+              <span className="mx-auto flex size-7 items-center justify-center rounded-full bg-foreground text-xs font-bold text-background">
                 {index + 1}
               </span>
               <h3 className="mt-2.5 text-sm font-semibold text-foreground">{step.title}</h3>
@@ -150,7 +150,7 @@ export default function HomePage() {
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-2xl border border-border bg-card px-3.5 py-3 transition-colors open:border-accent shadow-2xs"
+              className="group rounded-2xl border border-border bg-card px-3.5 py-3 transition-colors open:border-foreground/40 shadow-2xs"
             >
               <summary className="cursor-pointer list-none text-sm font-medium text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center justify-between gap-3">

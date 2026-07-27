@@ -94,7 +94,7 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
           </button>
         )}
         <button className={toolbarButton} type="button" onClick={copyEmbedLink}>
-          {copied ? <CheckIcon className="text-accent" /> : <CopyIcon />}
+          {copied ? <CheckIcon className="text-foreground" /> : <CopyIcon />}
           {copied ? "Copied" : "Copy link"}
         </button>
         <a
@@ -126,7 +126,7 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
           <div className="absolute inset-0 flex items-center justify-center bg-card">
             <div
               aria-label="Loading document"
-              className="size-8 animate-spin rounded-full border-2 border-border border-t-accent"
+              className="size-8 animate-spin rounded-full border-2 border-border border-t-foreground"
               role="status"
             />
           </div>
