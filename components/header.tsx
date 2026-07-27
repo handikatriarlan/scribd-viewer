@@ -9,7 +9,7 @@ export function Header() {
       <div className="mx-auto flex h-full w-full max-w-3xl items-center justify-between px-4">
         <Link
           href="/"
-          className="font-display text-lg sm:text-xl font-medium tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md"
+          className="font-sans text-lg sm:text-xl font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md"
         >
           {siteConfig.name}
         </Link>

@@ -64,7 +64,7 @@ export function HistoryList({
             >
               <span className="flex items-center gap-2 text-sm">
                 <FileIcon className="shrink-0 text-muted" />
-                <span className="tabular-nums">{entry.id}</span>
+                <span className="tabular-nums text-foreground">{entry.id}</span>
               </span>
               <span className="flex shrink-0 items-center gap-1.5 text-xs text-muted">
                 <ClockIcon width="12" height="12" />

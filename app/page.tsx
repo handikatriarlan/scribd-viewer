@@ -134,7 +134,7 @@ export default function HomePage() {
               <span className="mx-auto flex size-7 items-center justify-center rounded-full bg-accent text-sm font-semibold text-accent-foreground">
                 {index + 1}
               </span>
-              <h3 className="mt-3 text-sm font-medium">{step.title}</h3>
+              <h3 className="mt-3 text-sm font-medium text-foreground">{step.title}</h3>
               <p className="mt-1 text-xs leading-relaxed text-muted">
                 {step.description}
               </p>
