@@ -150,3 +150,61 @@ export function LinkIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function PrinterIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M6 9V2h12v7" />
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+      <rect x="6" y="14" width="12" height="8" />
+    </Icon>
+  );
+}
+
+export function ZoomInIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="11" cy="11" r="8" />
+      <path d="M21 21l-4.35-4.35" />
+      <path d="M11 8v6M8 11h6" />
+    </Icon>
+  );
+}
+
+export function ZoomOutIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="11" cy="11" r="8" />
+      <path d="M21 21l-4.35-4.35" />
+      <path d="M8 11h6" />
+    </Icon>
+  );
+}
+
+export function ResetZoomIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+      <path d="M3 3v5h5" />
+    </Icon>
+  );
+}
+
+export function PopoutIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M15 3h6v6" />
+      <path d="M10 14 21 3" />
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </Icon>
+  );
+}
+
+export function UserIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="8" r="5" />
+      <path d="M20 21a8 8 0 1 0-16 0" />
+    </Icon>
+  );
+}

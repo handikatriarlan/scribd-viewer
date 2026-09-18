@@ -52,23 +52,53 @@ export function HistoryList({
           Clear all
         </button>
       </div>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2.5">
         {entries.map((entry) => (
           <li key={entry.id}>
             <button
-              className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border bg-card px-3.5 py-2.5 text-left transition-colors hover:border-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground ${
-                entry.id === activeId ? "border-foreground ring-1 ring-foreground/20" : "border-border"
+              className={`flex w-full cursor-pointer items-center justify-between gap-3.5 rounded-xl border bg-card p-3 text-left transition-all hover:border-foreground/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground ${
+                entry.id === activeId
+                  ? "border-foreground ring-1 ring-foreground/20 bg-muted/20"
+                  : "border-border"
               }`}
               type="button"
               onClick={() => onSelect(entry.id)}
             >
-              <span className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
-                <FileIcon className="shrink-0 text-muted-foreground" />
-                <span className="tabular-nums text-foreground truncate font-medium">{entry.id}</span>
-              </span>
-              <span className="flex shrink-0 items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground">
-                <ClockIcon width="12" height="12" />
-                {formatRelativeTime(entry.viewedAt)}
+              <div className="flex min-w-0 items-center gap-3">
+                {entry.thumbnailUrl ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    alt={entry.title ?? entry.id}
+                    className="size-11 shrink-0 rounded-lg border border-border bg-muted/30 object-cover"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    src={entry.thumbnailUrl}
+                  />
+                ) : (
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/40 text-muted-foreground">
+                    <FileIcon className="size-5" />
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs sm:text-sm font-medium text-foreground">
+                    {entry.title || `Scribd Document ${entry.id}`}
+                  </p>
+                  <div className="mt-0.5 flex flex-wrap items-center gap-x-2 text-[11px] text-muted-foreground">
+                    {entry.author && (
+                      <span className="truncate max-w-[150px] sm:max-w-[200px]">
+                        By {entry.author}
+                      </span>
+                    )}
+                    <span className="font-mono text-[10px] text-muted-foreground/80">
+                      #{entry.id}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <span className="flex shrink-0 items-center gap-1 text-[11px] sm:text-xs text-muted-foreground">
+                <ClockIcon height="12" width="12" />
+                <span>{formatRelativeTime(entry.viewedAt)}</span>
               </span>
             </button>
           </li>
