@@ -161,41 +161,12 @@ export function PrinterIcon(props: IconProps) {
   );
 }
 
-export function ZoomInIcon(props: IconProps) {
+export function DownloadIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <circle cx="11" cy="11" r="8" />
-      <path d="M21 21l-4.35-4.35" />
-      <path d="M11 8v6M8 11h6" />
-    </Icon>
-  );
-}
-
-export function ZoomOutIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <circle cx="11" cy="11" r="8" />
-      <path d="M21 21l-4.35-4.35" />
-      <path d="M8 11h6" />
-    </Icon>
-  );
-}
-
-export function ResetZoomIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-      <path d="M3 3v5h5" />
-    </Icon>
-  );
-}
-
-export function PopoutIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M15 3h6v6" />
-      <path d="M10 14 21 3" />
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <path d="M7 10l5 5 5-5" />
+      <path d="M12 15V3" />
     </Icon>
   );
 }

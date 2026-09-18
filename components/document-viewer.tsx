@@ -9,18 +9,16 @@ import {
   CheckIcon,
   CloseIcon,
   CopyIcon,
+  DownloadIcon,
   ExternalLinkIcon,
   MaximizeIcon,
   MinimizeIcon,
-  PopoutIcon,
   PrinterIcon,
   UserIcon,
-  ZoomInIcon,
-  ZoomOutIcon,
 } from "@/components/icons";
 
 const toolbarButton =
-  "flex h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-border px-2.5 sm:px-3 text-xs sm:text-sm text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+  "flex h-7.5 sm:h-9 cursor-pointer items-center gap-1 sm:gap-1.5 rounded-md sm:rounded-lg border border-border px-2 sm:px-3 text-[11px] sm:text-sm text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-1 sm:focus-visible:ring-2 focus-visible:ring-accent shrink-0";
 
 const noopSubscribe = () => () => {};
 
@@ -29,8 +27,6 @@ function subscribeFullscreen(onChange: () => void) {
 
   return () => document.removeEventListener("fullscreenchange", onChange);
 }
-
-const ZOOM_STEPS = [75, 90, 100, 115, 130, 150];
 
 export interface DocumentViewerProps {
   doc: ScribdDocument;
@@ -43,7 +39,7 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
-  const [zoom, setZoom] = useState(100);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   const fullscreenSupported = useSyncExternalStore(
     noopSubscribe,
@@ -74,7 +70,7 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
         await wrapperRef.current?.requestFullscreen();
       }
     } catch {
-      // Fullscreen may be blocked; nothing to recover.
+      // Fullscreen may be blocked
     }
   };
 
@@ -83,8 +79,7 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
       await navigator.clipboard.writeText(doc.embedUrl);
       setCopied(true);
     } catch {
-      // Clipboard may be unavailable; the URL is still reachable via
-      // "Open on Scribd".
+      // Clipboard unavailable fallback
     }
   };
 
@@ -92,29 +87,24 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
     window.print();
   };
 
-  const handlePopout = () => {
-    window.open(doc.embedUrl, "_blank", "noopener,noreferrer");
+  const openDocDownloader = async () => {
+    try {
+      await navigator.clipboard.writeText(doc.originalUrl);
+    } catch {
+      // Ignore
+    }
+    window.open("https://docdownloader.com/", "_blank", "noopener,noreferrer");
   };
 
-  const handleZoomIn = () => {
-    setZoom((prev) => {
-      const nextIndex = ZOOM_STEPS.findIndex((z) => z > prev);
-      return nextIndex !== -1 ? ZOOM_STEPS[nextIndex] : prev;
-    });
+  const openScribdDownload = () => {
+    window.open(
+      `https://www.scribd.com/document_downloads/${doc.id}?extension=pdf`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
-  const handleZoomOut = () => {
-    setZoom((prev) => {
-      const prevSteps = ZOOM_STEPS.filter((z) => z < prev);
-      return prevSteps.length > 0 ? prevSteps[prevSteps.length - 1] : prev;
-    });
-  };
-
-  const handleResetZoom = () => {
-    setZoom(100);
-  };
-
-  // Keyboard shortcuts: Esc (close), F (fullscreen), P (print), +, -, 0 (zoom)
+  // Keyboard shortcuts: Esc (close), F (fullscreen), D (download modal)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
@@ -126,207 +116,232 @@ export function DocumentViewer({ doc, onClose }: DocumentViewerProps) {
       }
 
       if (e.key === "Escape") {
-        onClose();
+        if (showDownloadModal) {
+          setShowDownloadModal(false);
+        } else {
+          onClose();
+        }
       } else if (e.key === "f" || e.key === "F") {
         e.preventDefault();
         toggleFullscreen();
-      } else if ((e.ctrlKey || e.metaKey) && (e.key === "p" || e.key === "P")) {
-        // Let native print trigger handlePrint
-      } else if (e.key === "p" || e.key === "P") {
+      } else if (e.key === "d" || e.key === "D") {
         e.preventDefault();
-        handlePrint();
-      } else if (e.key === "+" || e.key === "=") {
-        e.preventDefault();
-        handleZoomIn();
-      } else if (e.key === "-") {
-        e.preventDefault();
-        handleZoomOut();
-      } else if (e.key === "0") {
-        e.preventDefault();
-        handleResetZoom();
+        setShowDownloadModal((prev) => !prev);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [onClose, showDownloadModal]);
 
   return (
-    <section id="scribd-viewer-container" className="mx-auto mt-8 w-full max-w-4xl">
-      {/* Metadata Header Card */}
+    <section
+      id="scribd-viewer-container"
+      className="mx-auto mt-4 sm:mt-8 w-full max-w-4xl px-3 sm:px-6"
+    >
+      {/* Metadata Header Card (No ID Badge, No Author Link Redirect) */}
       {(doc.title || doc.authorName) && (
-        <div className="print-hidden mb-4 flex flex-col gap-1.5 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0 flex-1">
-            <h2 className="truncate text-base font-semibold text-foreground sm:text-lg">
-              {doc.title || `Scribd Document ${doc.id}`}
-            </h2>
-            {doc.authorName && (
-              <div className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
-                <UserIcon className="size-3.5 shrink-0" />
-                <span>By</span>
-                {doc.originalUrl ? (
-                  <a
-                    className="font-medium text-foreground underline decoration-border underline-offset-2 transition-colors hover:text-foreground/80"
-                    href={doc.originalUrl}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {doc.authorName}
-                  </a>
-                ) : (
-                  <span className="font-medium text-foreground">{doc.authorName}</span>
-                )}
-              </div>
-            )}
-          </div>
-          <div className="flex shrink-0 items-center gap-2 pt-2 sm:pt-0">
-            <span className="rounded-md border border-border bg-muted/40 px-2 py-0.5 text-xs font-mono text-muted-foreground">
-              ID: {doc.id}
-            </span>
-          </div>
+        <div className="print-hidden mb-2.5 sm:mb-4 rounded-lg sm:rounded-xl border border-border bg-card p-2.5 sm:p-4">
+          <h2 className="text-xs sm:text-base font-semibold leading-snug text-foreground line-clamp-2">
+            {doc.title || "Dokumen Scribd"}
+          </h2>
+          {doc.authorName && (
+            <div className="mt-1 flex items-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground">
+              <UserIcon className="size-3 sm:size-3.5 shrink-0" />
+              <span>
+                Oleh <span className="font-medium text-foreground">{doc.authorName}</span>
+              </span>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Toolbar Controls */}
-      <div className="print-hidden mb-3 flex flex-wrap items-center gap-2">
+      {/* Toolbar Controls (Mobile Compact & Accessible) */}
+      <div className="print-hidden mb-2.5 sm:mb-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
         {fullscreenSupported && (
           <button
             className={toolbarButton}
-            title="Toggle Fullscreen (Key: F)"
+            title="Layar Penuh (Tombol: F)"
             type="button"
             onClick={toggleFullscreen}
           >
-            {isFullscreen ? <MinimizeIcon /> : <MaximizeIcon />}
+            {isFullscreen ? (
+              <MinimizeIcon className="size-3.5 sm:size-4" />
+            ) : (
+              <MaximizeIcon className="size-3.5 sm:size-4" />
+            )}
             <span className="hidden sm:inline">
-              {isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+              {isFullscreen ? "Keluar" : "Fullscreen"}
             </span>
           </button>
         )}
 
-        {/* Zoom Controls */}
-        <div className="flex items-center rounded-lg border border-border bg-card">
-          <button
-            aria-label="Zoom Out"
-            className="flex h-9 w-8 items-center justify-center text-foreground hover:bg-foreground/5 disabled:opacity-40"
-            disabled={zoom <= ZOOM_STEPS[0]}
-            title="Zoom Out (Key: -)"
-            type="button"
-            onClick={handleZoomOut}
-          >
-            <ZoomOutIcon />
-          </button>
-          <button
-            aria-label="Reset Zoom"
-            className="h-9 px-2 text-xs font-mono font-medium text-muted-foreground hover:bg-foreground/5"
-            title="Reset Zoom (Key: 0)"
-            type="button"
-            onClick={handleResetZoom}
-          >
-            {zoom}%
-          </button>
-          <button
-            aria-label="Zoom In"
-            className="flex h-9 w-8 items-center justify-center text-foreground hover:bg-foreground/5 disabled:opacity-40"
-            disabled={zoom >= ZOOM_STEPS[ZOOM_STEPS.length - 1]}
-            title="Zoom In (Key: +)"
-            type="button"
-            onClick={handleZoomIn}
-          >
-            <ZoomInIcon />
-          </button>
-        </div>
-
-        {/* Print / Export PDF */}
+        {/* Tombol Unduh Dokumen */}
         <button
-          className={toolbarButton}
-          title="Save as PDF / Print (Key: P)"
+          className={`${toolbarButton} bg-foreground text-background hover:bg-foreground/90 border-transparent`}
+          title="Unduh Dokumen (Tombol: D)"
           type="button"
-          onClick={handlePrint}
+          onClick={() => setShowDownloadModal(true)}
         >
-          <PrinterIcon />
-          <span>Export PDF</span>
+          <DownloadIcon className="size-3.5 sm:size-4" />
+          <span className="font-medium">Unduh</span>
         </button>
 
-        {/* Popout Reader */}
-        <button
-          className={toolbarButton}
-          title="Open in new window"
-          type="button"
-          onClick={handlePopout}
-        >
-          <PopoutIcon />
-          <span className="hidden sm:inline">Popout</span>
-        </button>
-
-        {/* Copy Embed Link */}
+        {/* Salin Tautan */}
         <button className={toolbarButton} type="button" onClick={copyEmbedLink}>
-          {copied ? <CheckIcon className="text-foreground" /> : <CopyIcon />}
-          <span>{copied ? "Copied" : "Copy link"}</span>
+          {copied ? (
+            <CheckIcon className="size-3.5 sm:size-4 text-foreground" />
+          ) : (
+            <CopyIcon className="size-3.5 sm:size-4" />
+          )}
+          <span>{copied ? "Tersalin" : "Salin"}</span>
         </button>
 
-        {/* Open on Scribd */}
+        {/* Buka di Scribd */}
         <a
           className={toolbarButton}
           href={doc.originalUrl}
           rel="noopener noreferrer"
           target="_blank"
         >
-          <ExternalLinkIcon />
-          <span className="hidden sm:inline">Open on Scribd</span>
+          <ExternalLinkIcon className="size-3.5 sm:size-4" />
+          <span className="hidden sm:inline">Buka di Scribd</span>
         </a>
 
-        {/* Close Button */}
+        {/* Tombol Tutup */}
         <button
-          aria-label="Close viewer"
+          aria-label="Tutup dokumen"
           className={`${toolbarButton} ml-auto`}
-          title="Close (Key: Esc)"
+          title="Tutup (Tombol: Esc)"
           type="button"
           onClick={onClose}
         >
-          <CloseIcon />
-          <span>Close</span>
+          <CloseIcon className="size-3.5 sm:size-4" />
+          <span className="hidden sm:inline">Tutup</span>
         </button>
       </div>
 
-      {/* Embed Container */}
+      {/* Embed Container (Responsive with Safe Mobile Bounds) */}
       <div
         id="scribd-embed-wrapper"
         ref={wrapperRef}
         className={`relative overflow-hidden bg-card ${
-          isFullscreen ? "h-full" : "rounded-xl border border-border"
+          isFullscreen ? "h-full" : "rounded-lg sm:rounded-xl border border-border"
         }`}
       >
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-card">
             <div
-              aria-label="Loading document"
-              className="size-8 animate-spin rounded-full border-2 border-border border-t-foreground"
+              aria-label="Memuat dokumen..."
+              className="size-7 sm:size-8 animate-spin rounded-full border-2 border-border border-t-foreground"
               role="status"
             />
           </div>
         )}
-        <div
-          className="w-full transition-transform duration-150 origin-top"
-          style={{
-            transform: zoom !== 100 ? `scale(${zoom / 100})` : undefined,
-            width: zoom !== 100 ? `${100 / (zoom / 100)}%` : "100%",
-          }}
-        >
-          <iframe
-            allowFullScreen
-            className={`w-full ${
-              isFullscreen ? "h-full" : "h-[70dvh] min-h-[420px] sm:h-[78dvh]"
-            }`}
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            src={doc.embedUrl}
-            title={`Scribd document ${doc.id}`}
-            onLoad={() => setLoading(false)}
-          />
-        </div>
+        <iframe
+          allowFullScreen
+          className={`w-full ${
+            isFullscreen ? "h-full" : "h-[65dvh] min-h-[380px] sm:h-[78dvh]"
+          }`}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          src={doc.embedUrl}
+          title={doc.title || `Scribd document ${doc.id}`}
+          onLoad={() => setLoading(false)}
+        />
       </div>
+
+      {/* Modal / Dialog Unduh Dokumen (Mobile-First, Sangat Ringkas & Nyaman) */}
+      {showDownloadModal && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-3 sm:p-4 backdrop-blur-xs animate-in">
+          <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-xl">
+            <div className="flex items-center justify-between pb-3 border-b border-border">
+              <div className="flex items-center gap-2">
+                <DownloadIcon className="size-4 text-foreground" />
+                <h3 className="text-xs sm:text-sm font-semibold text-foreground">
+                  Unduh Dokumen
+                </h3>
+              </div>
+              <button
+                aria-label="Tutup modal"
+                className="cursor-pointer rounded-md p-1 text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
+                type="button"
+                onClick={() => setShowDownloadModal(false)}
+              >
+                <CloseIcon className="size-4" />
+              </button>
+            </div>
+
+            <p className="mt-2.5 text-[11px] sm:text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+              {doc.title || "Dokumen Scribd"}
+            </p>
+
+            <div className="mt-3.5 flex flex-col gap-2">
+              <button
+                className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-border bg-foreground/5 p-2.5 text-left transition-colors hover:bg-foreground/10"
+                type="button"
+                onClick={openDocDownloader}
+              >
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium text-foreground">
+                    Unduh File PDF Lengkap
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Generator unduhan otomatis dokumen penuh
+                  </span>
+                </div>
+                <ExternalLinkIcon className="size-3.5 text-muted-foreground" />
+              </button>
+
+              <button
+                className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-border bg-card p-2.5 text-left transition-colors hover:bg-foreground/5"
+                type="button"
+                onClick={openScribdDownload}
+              >
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium text-foreground">
+                    Unduh Resmi dari Scribd
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Jika dokumen gratis atau memiliki akun
+                  </span>
+                </div>
+                <ExternalLinkIcon className="size-3.5 text-muted-foreground" />
+              </button>
+
+              <button
+                className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-border bg-card p-2.5 text-left transition-colors hover:bg-foreground/5"
+                type="button"
+                onClick={() => {
+                  setShowDownloadModal(false);
+                  handlePrint();
+                }}
+              >
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium text-foreground">
+                    Simpan Cepat (Browser PDF)
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Simpan langsung melalui menu print browser
+                  </span>
+                </div>
+                <PrinterIcon className="size-3.5 text-muted-foreground" />
+              </button>
+            </div>
+
+            <button
+              className="mt-3 w-full cursor-pointer rounded-lg py-2 text-center text-[11px] font-medium text-muted-foreground hover:text-foreground"
+              type="button"
+              onClick={() => setShowDownloadModal(false)}
+            >
+              Batal
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
+
 

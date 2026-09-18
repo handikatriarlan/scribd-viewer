@@ -106,11 +106,11 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         type="application/ld+json"
       />
-      <section className="pt-6 text-center sm:pt-14">
-        <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-4xl text-foreground text-balance">
+      <section className="pt-4 px-3.5 text-center sm:pt-14 sm:px-6">
+        <h1 className="mt-2 text-xl font-extrabold tracking-tight sm:text-4xl text-foreground text-balance">
           Read Scribd documents freely
         </h1>
-        <p className="mx-auto mt-2.5 max-w-md text-sm text-muted-foreground sm:text-base leading-relaxed">
+        <p className="mx-auto mt-2 max-w-md text-xs text-muted-foreground sm:text-base leading-relaxed">
           Paste a Scribd link and read the full document — no account, no
           paywall prompts.
         </p>
@@ -118,42 +118,42 @@ export default function HomePage() {
       <Suspense fallback={<ViewerFallback />}>
         <ViewerApp />
       </Suspense>
-      <section aria-labelledby="how-it-works" className="mx-auto mt-12 sm:mt-16 w-full max-w-2xl">
+      <section aria-labelledby="how-it-works" className="mx-auto mt-10 sm:mt-16 w-full max-w-2xl px-3.5 sm:px-6">
         <h2
-          className="text-center text-base sm:text-lg font-semibold tracking-tight text-foreground"
+          className="text-center text-sm sm:text-lg font-semibold tracking-tight text-foreground"
           id="how-it-works"
         >
           How it works
         </h2>
-        <ol className="mt-4 sm:mt-6 grid gap-3 sm:grid-cols-3">
+        <ol className="mt-3.5 sm:mt-6 grid gap-2.5 sm:grid-cols-3">
           {steps.map((step, index) => (
             <li
               key={step.title}
-              className="rounded-2xl border border-border bg-card p-3.5 text-center shadow-2xs"
+              className="rounded-xl sm:rounded-2xl border border-border bg-card p-3 sm:p-3.5 text-center shadow-2xs"
             >
-              <span className="mx-auto flex size-7 items-center justify-center rounded-full bg-foreground text-xs font-bold text-background">
+              <span className="mx-auto flex size-6 sm:size-7 items-center justify-center rounded-full bg-foreground text-[11px] sm:text-xs font-bold text-background">
                 {index + 1}
               </span>
-              <h3 className="mt-2.5 text-sm font-semibold text-foreground">{step.title}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+              <h3 className="mt-2 text-xs sm:text-sm font-semibold text-foreground">{step.title}</h3>
+              <p className="mt-1 text-[11px] sm:text-xs leading-relaxed text-muted-foreground">
                 {step.description}
               </p>
             </li>
           ))}
         </ol>
       </section>
-      <section aria-labelledby="faq" className="mx-auto mt-12 sm:mt-16 w-full max-w-2xl">
-        <h2 className="text-center text-base sm:text-lg font-semibold tracking-tight text-foreground" id="faq">
+      <section aria-labelledby="faq" className="mx-auto mt-10 sm:mt-16 w-full max-w-2xl px-3.5 sm:px-6">
+        <h2 className="text-center text-sm sm:text-lg font-semibold tracking-tight text-foreground" id="faq">
           Frequently asked questions
         </h2>
-        <div className="mt-4 sm:mt-6 flex flex-col gap-2.5">
+        <div className="mt-3.5 sm:mt-6 flex flex-col gap-2 sm:gap-2.5">
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-2xl border border-border bg-card px-3.5 py-3 transition-colors open:border-foreground/40 shadow-2xs"
+              className="group rounded-xl sm:rounded-2xl border border-border bg-card px-3 sm:px-3.5 py-2.5 sm:py-3 transition-colors open:border-foreground/40 shadow-2xs"
             >
-              <summary className="cursor-pointer list-none text-sm font-medium text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center justify-between gap-3">
+              <summary className="cursor-pointer list-none text-xs sm:text-sm font-medium text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center justify-between gap-2.5 sm:gap-3">
                   {faq.question}
                   <span
                     aria-hidden="true"
@@ -163,7 +163,7 @@ export default function HomePage() {
                   </span>
                 </span>
               </summary>
-              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[11px] sm:text-sm leading-relaxed text-muted-foreground">
                 {faq.answer}
               </p>
             </details>
