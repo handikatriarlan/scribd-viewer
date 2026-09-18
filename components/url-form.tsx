@@ -21,7 +21,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
       <div className="rounded-xl sm:rounded-2xl border border-border bg-card p-2.5 sm:p-4 shadow-2xs sm:shadow-sm">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sr-only" htmlFor="scribd-url">
-            Tautan atau ID dokumen Scribd
+            Scribd document link or ID
           </label>
           <div className="relative flex-1 w-full">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5 sm:pl-3 text-muted-foreground">
@@ -36,7 +36,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
               }`}
               id="scribd-url"
               name="url"
-              placeholder="Tempel tautan dokumen Scribd..."
+              placeholder="Paste a Scribd link or document ID..."
               spellCheck={false}
               type="text"
               value={value}
@@ -44,7 +44,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
             />
             {value && (
               <button
-                aria-label="Bersihkan input"
+                aria-label="Clear input"
                 className="absolute inset-y-0 right-0 flex items-center pr-2.5 text-muted-foreground hover:text-foreground cursor-pointer focus:outline-none"
                 type="button"
                 onClick={() => onChange("")}
@@ -57,7 +57,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
             className="h-9.5 sm:h-11 w-full sm:w-auto shrink-0 cursor-pointer rounded-lg sm:rounded-xl bg-foreground px-4 sm:px-6 text-xs sm:text-sm font-medium text-background flex items-center justify-center gap-1.5 sm:gap-2 transition hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-1 sm:focus-visible:ring-2 focus-visible:ring-foreground shadow-xs"
             type="submit"
           >
-            <span>Buka Dokumen</span>
+            <span>View document</span>
             <ArrowRightIcon className="size-3.5 sm:size-4" />
           </button>
         </div>
@@ -71,7 +71,7 @@ export function UrlForm({ value, error, onChange, onSubmit }: UrlFormProps) {
           </p>
         ) : (
           <p className="mt-2 text-[10px] sm:text-xs text-muted-foreground">
-            Mendukung tautan scribd.com/document, /doc, /presentation, dan /embeds.
+            Supports scribd.com/document, /doc, /presentation, and /embeds links.
           </p>
         )}
       </div>

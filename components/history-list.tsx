@@ -44,14 +44,14 @@ export function HistoryList({
     <section className="mx-auto mt-6 sm:mt-10 w-full max-w-2xl px-3 sm:px-6">
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-[11px] sm:text-sm font-medium text-muted-foreground">
-          Dokumen Sebelumnya
+          Recent documents
         </h2>
         <button
           className="cursor-pointer rounded-md px-1.5 py-0.5 text-[10px] sm:text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
           type="button"
           onClick={onClear}
         >
-          Hapus semua
+          Clear all
         </button>
       </div>
       <ul className="flex flex-col gap-2">
@@ -70,7 +70,7 @@ export function HistoryList({
                 {entry.thumbnailUrl ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
-                    alt={entry.title ?? "Dokumen"}
+                    alt={entry.title ?? "Document"}
                     className="size-9 sm:size-11 shrink-0 rounded-md sm:rounded-lg border border-border bg-muted/30 object-cover"
                     loading="lazy"
                     referrerPolicy="no-referrer"
@@ -83,11 +83,11 @@ export function HistoryList({
                 )}
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-xs sm:text-sm font-medium text-foreground">
-                    {entry.title || "Dokumen Scribd"}
+                    {entry.title || "Scribd Document"}
                   </p>
                   {entry.author && (
                     <p className="mt-0.5 truncate text-[10px] sm:text-xs text-muted-foreground">
-                      Oleh {entry.author}
+                      By {entry.author}
                     </p>
                   )}
                 </div>
