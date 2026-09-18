@@ -358,3 +358,41 @@
     opacity: 0.7;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   Print Stylesheet (Save as PDF)
+   ═══════════════════════════════════════════════ */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header,
+  footer,
+  form,
+  nav,
+  .print-hidden {
+    display: none !important;
+  }
+
+  #scribd-viewer-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  #scribd-embed-wrapper {
+    border: none !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    height: 100vh !important;
+  }
+
+  #scribd-embed-wrapper iframe {
+    height: 100vh !important;
+    width: 100% !important;
+  }
+}
+

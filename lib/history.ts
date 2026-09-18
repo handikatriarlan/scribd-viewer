@@ -2,6 +2,9 @@ export interface HistoryEntry {
   id: string;
   sourceUrl: string;
   viewedAt: number;
+  title?: string;
+  author?: string;
+  thumbnailUrl?: string | null;
 }
 
 const KEY = "scribd-viewer:history";
@@ -15,7 +18,12 @@ function isHistoryEntry(value: unknown): value is HistoryEntry {
   return (
     typeof entry.id === "string" &&
     typeof entry.sourceUrl === "string" &&
-    typeof entry.viewedAt === "number"
+    typeof entry.viewedAt === "number" &&
+    (entry.title === undefined || typeof entry.title === "string") &&
+    (entry.author === undefined || typeof entry.author === "string") &&
+    (entry.thumbnailUrl === undefined ||
+      entry.thumbnailUrl === null ||
+      typeof entry.thumbnailUrl === "string")
   );
 }
 
@@ -60,15 +68,54 @@ export function getHistoryServerSnapshot(): HistoryEntry[] {
 export function addToHistory(entry: Omit<HistoryEntry, "viewedAt">): void {
   if (typeof window === "undefined") return;
 
+  const current = readHistory();
+  const existing = current.find((item) => item.id === entry.id);
+
+  const merged: HistoryEntry = {
+    ...existing,
+    ...entry,
+    viewedAt: Date.now(),
+  };
+
   const next = [
-    { ...entry, viewedAt: Date.now() },
-    ...readHistory().filter((item) => item.id !== entry.id),
+    merged,
+    ...current.filter((item) => item.id !== entry.id),
   ].slice(0, MAX_ENTRIES);
 
   try {
     window.localStorage.setItem(KEY, JSON.stringify(next));
   } catch {
     // Storage may be full or blocked; skip persisting.
+  }
+
+  emit();
+}
+
+export function updateHistoryMetadata(
+  id: string,
+  metadata: {
+    title?: string;
+    author?: string;
+    thumbnailUrl?: string | null;
+  },
+): void {
+  if (typeof window === "undefined") return;
+
+  const current = readHistory();
+  const index = current.findIndex((item) => item.id === id);
+
+  if (index === -1) return;
+
+  const updated = [...current];
+  updated[index] = {
+    ...updated[index],
+    ...metadata,
+  };
+
+  try {
+    window.localStorage.setItem(KEY, JSON.stringify(updated));
+  } catch {
+    // Storage may be full or blocked.
   }
 
   emit();

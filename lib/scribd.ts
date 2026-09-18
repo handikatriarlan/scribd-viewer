@@ -2,6 +2,17 @@ export interface ScribdDocument {
   id: string;
   embedUrl: string;
   originalUrl: string;
+  title?: string;
+  authorName?: string;
+  thumbnailUrl?: string | null;
+}
+
+export interface ScribdMetadata {
+  id: string;
+  title: string;
+  authorName: string;
+  authorUrl?: string | null;
+  thumbnailUrl?: string | null;
 }
 
 const BARE_ID_RE = /^\d{4,15}$/;
@@ -46,4 +57,18 @@ export function parseScribdInput(input: string): ScribdDocument | null {
   const id = extractScribdId(input);
 
   return id ? toScribdDocument(id) : null;
+}
+
+export async function fetchScribdMetadata(
+  id: string,
+): Promise<ScribdMetadata | null> {
+  try {
+    const res = await fetch(`/api/document/${id}`);
+
+    if (!res.ok) return null;
+
+    return (await res.json()) as ScribdMetadata;
+  } catch {
+    return null;
+  }
 }

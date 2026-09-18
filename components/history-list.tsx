@@ -41,11 +41,13 @@ export function HistoryList({
   if (entries.length === 0) return null;
 
   return (
-    <section className="mx-auto mt-8 sm:mt-10 w-full max-w-2xl">
-      <div className="mb-2.5 flex items-center justify-between">
-        <h2 className="text-xs sm:text-sm font-medium text-muted-foreground">Recent documents</h2>
+    <section className="mx-auto mt-6 sm:mt-10 w-full max-w-2xl px-3 sm:px-6">
+      <div className="mb-2 flex items-center justify-between">
+        <h2 className="text-[11px] sm:text-sm font-medium text-muted-foreground">
+          Recent documents
+        </h2>
         <button
-          className="cursor-pointer rounded-lg px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="cursor-pointer rounded-md px-1.5 py-0.5 text-[10px] sm:text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
           type="button"
           onClick={onClear}
         >
@@ -56,19 +58,44 @@ export function HistoryList({
         {entries.map((entry) => (
           <li key={entry.id}>
             <button
-              className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border bg-card px-3.5 py-2.5 text-left transition-colors hover:border-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground ${
-                entry.id === activeId ? "border-foreground ring-1 ring-foreground/20" : "border-border"
+              className={`flex w-full cursor-pointer items-center justify-between gap-2.5 sm:gap-3.5 rounded-lg sm:rounded-xl border bg-card p-2 sm:p-3 text-left transition-all hover:border-foreground/40 hover:shadow-xs focus-visible:outline-none focus-visible:ring-1 sm:focus-visible:ring-2 focus-visible:ring-foreground ${
+                entry.id === activeId
+                  ? "border-foreground ring-1 ring-foreground/20 bg-muted/20"
+                  : "border-border"
               }`}
               type="button"
               onClick={() => onSelect(entry.id)}
             >
-              <span className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
-                <FileIcon className="shrink-0 text-muted-foreground" />
-                <span className="tabular-nums text-foreground truncate font-medium">{entry.id}</span>
-              </span>
-              <span className="flex shrink-0 items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground">
-                <ClockIcon width="12" height="12" />
-                {formatRelativeTime(entry.viewedAt)}
+              <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+                {entry.thumbnailUrl ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    alt={entry.title ?? "Document"}
+                    className="size-9 sm:size-11 shrink-0 rounded-md sm:rounded-lg border border-border bg-muted/30 object-cover"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    src={entry.thumbnailUrl}
+                  />
+                ) : (
+                  <div className="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-md sm:rounded-lg border border-border bg-muted/40 text-muted-foreground">
+                    <FileIcon className="size-4 sm:size-5" />
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs sm:text-sm font-medium text-foreground">
+                    {entry.title || "Scribd Document"}
+                  </p>
+                  {entry.author && (
+                    <p className="mt-0.5 truncate text-[10px] sm:text-xs text-muted-foreground">
+                      By {entry.author}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <span className="flex shrink-0 items-center gap-1 text-[10px] sm:text-xs text-muted-foreground">
+                <ClockIcon className="size-3 sm:size-3.5" />
+                <span>{formatRelativeTime(entry.viewedAt)}</span>
               </span>
             </button>
           </li>

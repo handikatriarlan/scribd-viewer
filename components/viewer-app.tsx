@@ -9,8 +9,15 @@ import {
   getHistoryServerSnapshot,
   getHistorySnapshot,
   subscribeHistory,
+  updateHistoryMetadata,
 } from "@/lib/history";
-import { isValidScribdId, parseScribdInput, toScribdDocument } from "@/lib/scribd";
+import {
+  fetchScribdMetadata,
+  isValidScribdId,
+  parseScribdInput,
+  toScribdDocument,
+  type ScribdMetadata,
+} from "@/lib/scribd";
 
 import { DocumentViewer } from "@/components/document-viewer";
 import { HistoryList } from "@/components/history-list";
@@ -22,23 +29,60 @@ export function ViewerApp() {
 
   const rawParam = searchParams.get("d");
   const docId = rawParam && isValidScribdId(rawParam) ? rawParam : null;
-  const doc = docId ? toScribdDocument(docId) : null;
 
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [remoteMetadata, setRemoteMetadata] = useState<ScribdMetadata | null>(null);
+
   const history = useSyncExternalStore(
     subscribeHistory,
     getHistorySnapshot,
     getHistoryServerSnapshot,
   );
 
+  const activeEntry = docId ? history.find((item) => item.id === docId) : null;
+
   useEffect(() => {
     if (!docId) return;
+
     addToHistory({
       id: docId,
       sourceUrl: `https://www.scribd.com/document/${docId}`,
     });
+
+    let active = true;
+    fetchScribdMetadata(docId).then((meta) => {
+      if (!active || !meta) return;
+      setRemoteMetadata(meta);
+      updateHistoryMetadata(docId, {
+        title: meta.title,
+        author: meta.authorName,
+        thumbnailUrl: meta.thumbnailUrl,
+      });
+    });
+
+    return () => {
+      active = false;
+    };
   }, [docId]);
+
+  const doc = docId
+    ? {
+        ...toScribdDocument(docId),
+        title:
+          remoteMetadata?.id === docId
+            ? remoteMetadata.title
+            : activeEntry?.title,
+        authorName:
+          remoteMetadata?.id === docId
+            ? remoteMetadata.authorName
+            : activeEntry?.author,
+        thumbnailUrl:
+          remoteMetadata?.id === docId
+            ? remoteMetadata.thumbnailUrl
+            : activeEntry?.thumbnailUrl,
+      }
+    : null;
 
   const openDocument = (id: string) => {
     router.replace(`/?d=${id}`, { scroll: false });
