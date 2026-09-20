@@ -3,16 +3,17 @@ export interface ScribdDocument {
   embedUrl: string;
   originalUrl: string;
   title?: string;
-  authorName?: string;
+  authorName?: string | null;
   thumbnailUrl?: string | null;
 }
 
 export interface ScribdMetadata {
   id: string;
   title: string;
-  authorName: string;
+  authorName?: string | null;
   authorUrl?: string | null;
   thumbnailUrl?: string | null;
+  isFallback?: boolean;
 }
 
 const BARE_ID_RE = /^\d{4,15}$/;
