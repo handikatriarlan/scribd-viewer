@@ -56,7 +56,7 @@ export function ViewerApp() {
       setRemoteMetadata(meta);
       updateHistoryMetadata(docId, {
         title: meta.title,
-        author: meta.authorName,
+        author: meta.authorName ?? undefined,
         thumbnailUrl: meta.thumbnailUrl,
       });
     });
