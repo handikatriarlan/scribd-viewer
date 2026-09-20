@@ -55,7 +55,10 @@ export function ViewerApp() {
       if (!active || !meta) return;
       setRemoteMetadata(meta);
       updateHistoryMetadata(docId, {
-        title: meta.title,
+        title:
+          meta.isFallback && activeEntry?.title
+            ? activeEntry.title
+            : meta.title,
         author: meta.authorName ?? undefined,
         thumbnailUrl: meta.thumbnailUrl,
       });
@@ -64,15 +67,15 @@ export function ViewerApp() {
     return () => {
       active = false;
     };
-  }, [docId]);
+  }, [docId, activeEntry?.title]);
 
   const doc = docId
     ? {
         ...toScribdDocument(docId),
         title:
-          remoteMetadata?.id === docId
+          remoteMetadata && !remoteMetadata.isFallback
             ? remoteMetadata.title
-            : activeEntry?.title,
+            : activeEntry?.title || remoteMetadata?.title,
         authorName:
           remoteMetadata?.id === docId
             ? remoteMetadata.authorName
@@ -98,6 +101,11 @@ export function ViewerApp() {
     }
 
     setError(null);
+    addToHistory({
+      id: parsed.id,
+      sourceUrl: parsed.originalUrl,
+      title: parsed.title,
+    });
     openDocument(parsed.id);
   };
 

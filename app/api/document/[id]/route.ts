@@ -44,7 +44,7 @@ export async function GET(
     const oembedUrl = `https://www.scribd.com/services/oembed?url=https://www.scribd.com/document/${id}&format=json`;
     const res = await fetch(oembedUrl, {
       headers: defaultHeaders,
-      next: { revalidate: 86400 },
+      cache: "no-store",
     });
 
     const contentType = res.headers.get("content-type") ?? "";
@@ -78,7 +78,7 @@ export async function GET(
     const xmlUrl = `https://www.scribd.com/services/oembed?url=https://www.scribd.com/document/${id}&format=xml`;
     const xmlRes = await fetch(xmlUrl, {
       headers: defaultHeaders,
-      next: { revalidate: 86400 },
+      cache: "no-store",
     });
 
     if (xmlRes.ok) {
@@ -108,7 +108,7 @@ export async function GET(
     },
     {
       headers: {
-        "Cache-Control": "public, s-maxage=3600",
+        "Cache-Control": "public, s-maxage=60",
       },
     }
   );

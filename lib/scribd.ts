@@ -17,17 +17,26 @@ export interface ScribdMetadata {
 }
 
 const BARE_ID_RE = /^\d{4,15}$/;
-const PATH_RE = /^\/(?:document|doc|presentation|book|embeds)\/(\d+)(?:[/?#]|$)/i;
+const PATH_RE = /^\/(?:document|doc|presentation|book|embeds)\/(\d+)(?:\/([^/?#]+))?/i;
 
 export function isValidScribdId(value: string): boolean {
   return BARE_ID_RE.test(value);
 }
 
-export function extractScribdId(input: string): string | null {
+export function toScribdDocument(id: string, title?: string): ScribdDocument {
+  return {
+    id,
+    embedUrl: `https://www.scribd.com/embeds/${id}/content`,
+    originalUrl: `https://www.scribd.com/document/${id}`,
+    ...(title ? { title } : {}),
+  };
+}
+
+export function parseScribdInput(input: string): ScribdDocument | null {
   const raw = input.trim();
 
   if (raw === "") return null;
-  if (BARE_ID_RE.test(raw)) return raw;
+  if (BARE_ID_RE.test(raw)) return toScribdDocument(raw);
 
   let url: URL;
 
@@ -43,21 +52,27 @@ export function extractScribdId(input: string): string | null {
 
   const match = url.pathname.match(PATH_RE);
 
-  return match ? match[1] : null;
+  if (!match) return null;
+
+  const id = match[1];
+  const slug = match[2];
+  let title: string | undefined;
+
+  if (slug) {
+    try {
+      title = decodeURIComponent(slug.replace(/[-_]+/g, " ")).trim();
+    } catch {
+      title = slug.replace(/[-_]+/g, " ").trim();
+    }
+  }
+
+  return toScribdDocument(id, title);
 }
 
-export function toScribdDocument(id: string): ScribdDocument {
-  return {
-    id,
-    embedUrl: `https://www.scribd.com/embeds/${id}/content`,
-    originalUrl: `https://www.scribd.com/document/${id}`,
-  };
-}
+export function extractScribdId(input: string): string | null {
+  const doc = parseScribdInput(input);
 
-export function parseScribdInput(input: string): ScribdDocument | null {
-  const id = extractScribdId(input);
-
-  return id ? toScribdDocument(id) : null;
+  return doc ? doc.id : null;
 }
 
 export async function fetchScribdMetadata(
