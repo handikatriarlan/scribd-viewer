@@ -8,7 +8,7 @@ A free online tool to view Scribd locked documents. Paste a Scribd link (or a ba
 
 - Supports every Scribd link format: `/document`, `/doc`, `/presentation`, `/book`, `/embeds`, and bare document IDs
 - Shareable viewer links — `/?d=<id>` opens the document directly
-- Recent documents history (stored locally in your browser)
+- Recent documents history (stored locally in your browser, up to 8 items)
 - Fullscreen reading mode
 - Copy the embed link or open the original document on Scribd
 - Light/dark theme with system preference support
