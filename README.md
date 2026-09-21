@@ -1,5 +1,3 @@
-
-
 # Scribd Viewer
 
 ![Scribd Viewer Website Screenshot](https://ucarecdn.com/97714dad-3815-4264-b299-4dc5ca6d7aef/scribdhandikatriarlandev.png)
